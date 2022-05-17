@@ -29,11 +29,13 @@ RUN curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-
     && npm install -g npm http-server \
     && rm -rf ~/n
 
+RUN adduser actions sudo
+
 WORKDIR /home/actions/actions-runner
 
 USER actions
 COPY --chown=actions:actions entrypoint.sh .
-RUN chmod u+x ./entrypoint.sh && adduser actions sudo
+RUN chmod u+x ./entrypoint.sh
 
 ENV RUNNER_ALLOW_RUNASROOT="1"
 ENTRYPOINT ["./entrypoint.sh"]
