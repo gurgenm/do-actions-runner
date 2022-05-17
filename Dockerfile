@@ -9,9 +9,9 @@ RUN apt-get -y update && apt-get install -y \
     && common_packages=$(echo $toolset | jq -r ".apt.common_packages[]") && cmd_packages=$(echo $toolset | jq -r ".apt.cmd_packages[]") \
     && for package in $common_packages $cmd_packages; do apt-get install -y --no-install-recommends $package; done
 
-# RUN adduser --disabled-password --gecos '' actions \
-#     && adduser actions sudo \
-#     && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN adduser --disabled-password --gecos '' actions \
+    && adduser actions sudo \
+    && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 RUN \
     RUNNER_VERSION="$(curl -s -X GET 'https://api.github.com/repos/actions/runner/releases/latest' | jq -r '.tag_name|ltrimstr("v")')" \
