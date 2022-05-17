@@ -36,7 +36,6 @@ cleanup() {
 trap 'cleanup; exit 130' INT
 trap 'cleanup; exit 143' SIGTERM
 
-npm install -g http-server
 http-server &
 
 ./run.sh "$@" & wait $!
