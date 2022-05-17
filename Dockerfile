@@ -1,5 +1,7 @@
 FROM ubuntu:focal
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update -y && apt-get upgrade -y && useradd -m actions
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
