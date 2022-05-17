@@ -33,7 +33,7 @@ WORKDIR /home/actions/actions-runner
 
 USER actions
 COPY --chown=actions:actions entrypoint.sh .
-RUN chmod u+x ./entrypoint.sh
+RUN chmod u+x ./entrypoint.sh && adduser actions sudo
 
 ENV RUNNER_ALLOW_RUNASROOT="1"
 ENTRYPOINT ["./entrypoint.sh"]
