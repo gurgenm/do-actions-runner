@@ -27,6 +27,8 @@ cleanup() {
   ./config.sh remove --token "${RUNNER_TOKEN}"
 }
 
+RUNNER_ALLOW_RUNASROOT="1"
+
 ./config.sh \
   --url "https://github.com/${CONFIG_PATH}" \
   --token "${RUNNER_TOKEN}" \

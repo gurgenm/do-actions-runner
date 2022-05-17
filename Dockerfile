@@ -26,7 +26,7 @@ RUN curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-
     && ~/n/bin/n lts \
     && npm install -g grunt gulp n parcel-bundler typescript newman \
     && npm install -g --save-dev webpack webpack-cli \
-    && npm install -g npm http-server\
+    && npm install -g npm http-server \
     && rm -rf ~/n
 
 WORKDIR /home/actions/actions-runner
@@ -34,4 +34,6 @@ WORKDIR /home/actions/actions-runner
 USER actions
 COPY --chown=actions:actions entrypoint.sh .
 RUN chmod u+x ./entrypoint.sh
+
+ENV RUNNER_ALLOW_RUNASROOT="1"
 ENTRYPOINT ["./entrypoint.sh"]
