@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN useradd -m actions
+RUN useradd --disabled-password --gecos '' actions
 RUN apt-get -y update && apt-get install -y \
     apt-transport-https ca-certificates curl jq software-properties-common \
     && toolset="$(curl -sL https://raw.githubusercontent.com/actions/virtual-environments/main/images/linux/toolsets/toolset-2004.json)" \
@@ -29,7 +29,7 @@ RUN curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-
     && npm install -g npm http-server \
     && rm -rf ~/n
 
-RUN adduser actions sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && adduser actions sudo && usermod -aG sudo actions
 
 WORKDIR /home/actions/actions-runner
 
