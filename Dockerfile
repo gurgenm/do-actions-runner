@@ -15,6 +15,10 @@ RUN \
     && ./bin/installdependencies.sh \
     && chown -R actions ~actions
 
+RUN add-apt-repository ppa:git-core/ppa -y \
+    && apt-get update -y && apt-get install -y --no-install-recommends \
+    build-essential git
+
 RUN curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-install | bash -s -- -ny - \
     && ~/n/bin/n lts \
     && npm install -g grunt gulp n parcel-bundler typescript newman \
