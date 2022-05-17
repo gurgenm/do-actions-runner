@@ -36,8 +36,8 @@ RUN curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-
 WORKDIR /home/actions/actions-runner
 
 # USER actions
-# COPY --chown=actions:actions entrypoint.sh .
-RUN chmod u+x ./entrypoint.sh
+COPY entrypoint.sh .
+RUN chmod +x ./entrypoint.sh
 
 ENV RUNNER_ALLOW_RUNASROOT="1"
 ENTRYPOINT ["./entrypoint.sh"]
