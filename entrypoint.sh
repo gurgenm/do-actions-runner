@@ -23,6 +23,7 @@ fi
 RUNNER_TOKEN=$(curl -s -X POST -H "authorization: token ${TOKEN}" "https://api.github.com/${API_PATH}/actions/runners/registration-token" | jq -r .token)
 
 cleanup() {
+  echo "Removing runner..."
   ./config.sh remove --token "${RUNNER_TOKEN}"
 }
 
@@ -32,8 +33,7 @@ cleanup() {
   --name "${NAME:-$(hostname)}" \
   --unattended
 
-trap 'cleanup' SIGTERM
+trap 'cleanup; exit 130' INT
+trap 'cleanup, exit 143' SIGTERM
 
-./run.sh "$@" &
-
-wait $!
+./run.sh "$@" & wait $!
