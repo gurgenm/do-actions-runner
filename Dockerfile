@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:focal
 
 RUN useradd -m actions
 RUN apt-get -y update && apt-get install -y \
