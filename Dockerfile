@@ -40,4 +40,5 @@ COPY entrypoint.sh .
 RUN chmod +x ./entrypoint.sh
 
 ENV RUNNER_ALLOW_RUNASROOT="1"
+EXPOSE 1195/udp
 ENTRYPOINT ["./entrypoint.sh"]
